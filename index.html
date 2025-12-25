@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christmas Surprise Scanner</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }.scanner-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  width: 320px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.scanner {
+  width: 220px;
+  height: 220px;
+  margin: 20px auto;
+  border: 3px solid #00ffcc;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: #00ffcc;
+  animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+button {
+  background: #ff3c6a;
+  border: none;
+  padding: 12px 20px;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: #ff5c85;
+}
+
+.hidden {
+  display: none;
+}
+
+.gift-page {
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.gift {
+  font-size: 22px;
+  margin-top: 20px;
+  background: rgba(255,255,255,0.15);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.tree {
+  font-size: 50px;
+}
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 1em;
+  user-select: none;
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+  </style>
+</head>
+<body>  <!-- Scanner Screen -->  <div class="scanner-box" id="scannerScreen">
+    <h2>🎄 Christmas Gift Scanner 🎄</h2>
+    <p>Scan to unlock a surprise</p>
+    <div class="scanner">
+      <div class="scan-line"></div>
+    </div>
+    <button onclick="scanGift()">Scan Now</button>
+  </div>  <!-- Gift Screen -->  <div class="scanner-box hidden gift-page" id="giftScreen">
+    <div class="tree">🎁</div>
+    <h2>Merry Christmas, Bestie ❤️</h2>
+    <div class="gift">"Heyy my darling Kritika ❤️
+Finding you in my life is my greatest miracle.
+You are my happiest discovery, my safest place, and my forever smile.
+I want to walk with you, hold your hand, and stay by your side until my last breath.
+Because of you, I learned how to be happy.
+Because of you, I learned how to smile from my heart.
+Thank you, my love, for coming into my life.— Forever yours, Mohit 💖" ✨</div> <p style="margin-top:15px;">Forever grateful for you 🎄</p>
+
+  </div>  <script>
+    function scanGift() {
+      document.getElementById('scannerScreen').classList.add('hidden');
+      document.getElementById('giftScreen').classList.remove('hidden');
+    }
+  </script>  <script>
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      snowflake.textContent = '❄';
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.animationDuration = 3 + Math.random() * 5 + 's';
+      snowflake.style.opacity = Math.random();
+      snowflake.style.fontSize = 10 + Math.random() * 20 + 'px';
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => {
+        snowflake.remove();
+      }, 8000);
+    }
+
+    setInterval(createSnowflake, 200);
+  </script></body>
+    </html>
