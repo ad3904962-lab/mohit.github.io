@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>New Year Surprise</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #ffb347, #1a001a);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.screen {
+  text-align: center;
+}
+
+.hidden { display: none; }
+
+.bouquet {
+  font-size: 80px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.typing {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  white-space: nowrap;
+  border-right: 3px solid #ffd700;
+  width: 0;
+  overflow: hidden;
+  animation: typing 3.5s steps(30,end) forwards, blink .7s infinite;
+}
+
+@keyframes typing {
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding: 35px;
+  width: 340px;
+  box-shadow: 0 0 35px rgba(255, 180, 71, 0.6);
+}
+
+.year {
+  font-size: 42px;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.7;
+  background: rgba(255,255,255,0.15);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+button {
+  margin-top: 22px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  background: #ffb347;
+  color: #1a001a;
+  cursor: pointer;
+}
+
+.firework {
+  position: fixed;
+  top: -10px;
+  font-size: 22px;
+  animation: fall linear infinite;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIRST SCREEN -->
+<div class="screen" id="firstScreen">
+  <div class="bouquet">💐🌸🌹</div>
+  <div class="typing">Happy New Year Kritika 💖</div>
+  <button onclick="openCard()">Open Surprise 🎁</button>
+</div>
+
+<!-- SECOND SCREEN -->
+<div class="screen hidden" id="cardScreen">
+  <div class="card">
+    <h2>Happy New Year</h2>
+    <div class="year">2026</div>
+
+    <div class="message">
+  Perfect as the <b>Rosso Corsa</b> shade ❤️<br>
+  Perfect as <b>BMW Angel Eyes</b> ✨<br>
+  Beautiful as the <b>GT3 RS</b> 🏎️<br>
+  Perfect as <b>Lamborghini curves</b> 💛<br>
+  Perfect as the <b>BMW M4 alloys</b> 🔥
+  <br><br>
+
+  In a world full of noise, you are my favorite melody 🎶<br>
+  In a journey full of turns, you are my smoothest ride 🚗💨<br>
+  Every moment with you feels like a dream I never want to wake from 💫
+  <br><br>
+
+  May 2026 bring us more smiles, more love,<br>
+  and countless memories together 💖
+  <br><br>
+
+  — From Mohit
+  </div>
+
+    <button onclick="celebrate()">Celebrate 🎆</button>
+  </div>
+</div>
+
+<script>
+function openCard() {
+  document.getElementById("firstScreen").classList.add("hidden");
+  document.getElementById("cardScreen").classList.remove("hidden");
+}
+
+function celebrate() {
+  for (let i = 0; i < 40; i++) {
+    const fw = document.createElement("div");
+    fw.className = "firework";
+    fw.textContent = "🎆";
+    fw.style.left = Math.random() * window.innerWidth + "px";
+    fw.style.animationDuration = 2 + Math.random() * 3 + "s";
+    document.body.appendChild(fw);
+    setTimeout(() => fw.remove(), 5000);
+  }
+}
+</script>
+
+</body>
+  </html>
