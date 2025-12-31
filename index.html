@@ -2,87 +2,139 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New Year Surprise</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
   font-family: 'Segoe UI', sans-serif;
 }
 
-body {
-  background: radial-gradient(circle at top, #ffb347, #1a001a);
-  color: white;
-  min-height: 100vh;
-  overflow: hidden;
+body{
+  background:#0b0014;
+  color:white;
+  overflow:hidden;
 }
 
-.section {
-  display: none;
-  height: 100vh;
-  width: 100%;
-  text-align: center;
-  padding: 40px 20px;
+.section{
+  width:100vw;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 1s ease;
 }
 
-.active {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.section.active{
+  opacity:1;
+  pointer-events:auto;
 }
 
-/* BUTTON */
-button {
-  margin-top: 30px;
-  padding: 12px 28px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px;
-  background: #ff4d6d;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
+/* ---------- FIRST SCREEN ---------- */
+#screen1{
+  background:radial-gradient(circle at top, #ff4ecd, #0b0014);
 }
 
-button:hover {
-  background: #ff1e50;
+.title{
+  font-size:2.2rem;
+  text-align:center;
+  animation: glow 2s infinite alternate;
 }
 
-/* TEXT STYLES */
-h1 {
-  font-size: 34px;
-  margin-bottom: 20px;
+@keyframes glow{
+  from{text-shadow:0 0 10px #ff4ecd;}
+  to{text-shadow:0 0 25px #ff99dd;}
 }
 
-.quote {
-  font-size: 20px;
-  line-height: 1.6;
-  max-width: 700px;
+button{
+  margin-top:30px;
+  padding:14px 30px;
+  font-size:1rem;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:linear-gradient(45deg,#ff4ecd,#ff8ad8);
+  color:#000;
+  box-shadow:0 0 20px #ff4ecd;
 }
 
-/* DOODLE */
-svg {
-  width: 300px;
-  margin-bottom: 20px;
+/* ---------- SECOND SCREEN ---------- */
+#screen2{
+  background:linear-gradient(135deg,#14001f,#2a003a);
+  padding:20px;
 }
 
-/* FIREWORKS */
-.firework {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: white;
-  animation: explode 1.5s infinite;
+.card{
+  max-width:600px;
+  background:rgba(255,255,255,0.08);
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  animation: fadeUp 1.5s ease;
 }
 
-@keyframes explode {
-  0% { transform: scale(0); opacity: 1; }
-  100% { transform: scale(12); opacity: 0; }
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.card p{
+  line-height:1.7;
+  font-size:1rem;
+}
+
+.next{
+  margin-top:25px;
+}
+
+/* ---------- THIRD SCREEN ---------- */
+#screen3{
+  background:#050008;
+}
+
+canvas{
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+.final-text{
+  position:relative;
+  z-index:2;
+  margin-top:300px;
+  font-size:1.5rem;
+  text-shadow:0 0 15px #ff69b4;
+}
+
+/* ---------- DOODLE COUPLE ---------- */
+.doodle{
+  position:absolute;
+  top:180px;
+  z-index:2;
+}
+
+.heart{
+  position:absolute;
+  top:-20px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:24px;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.3);}
+  100%{transform:scale(1);}
 }
 </style>
 </head>
@@ -91,65 +143,89 @@ svg {
 
 <!-- SCREEN 1 -->
 <div class="section active" id="screen1">
-  <h1>✨ Happy New Year <br> Pasandida Aurat ✨</h1>
-  <button onclick="nextScreen(2)">Open Surprise 💌</button>
+  <h1 class="title">✨ Happy New Year<br>Pasandida Aurat ✨</h1>
+  <button onclick="goTo(2)">Open Surprise 💌</button>
 </div>
 
 <!-- SCREEN 2 -->
 <div class="section" id="screen2">
-  <div class="quote">
-    Perfect as the Rosso Corsa shade ❤️<br>
-    Perfect as BMW eyes 👀<br>
-    Beautiful as the GT3 RS 🏎️<br>
-    Perfect as Lamborghini curves 💛<br>
-    Perfect as the BMW M4 alloys ✨<br><br>
+  <div class="card">
+    <p>
+      Perfect as the Rosso Corsa shade ❤️<br>
+      Perfect as BMW eyes<br>
+      Beautiful as the GT3 RS<br>
+      Perfect as Lamborghini curves<br>
+      Perfect as the BMW M4 alloys ✨<br><br>
 
-    <em>
-    Aur in sab se zyada…<br>
-    Perfect is the smile you give me,<br>
-    Aur lucky hoon main jo har naye saal<br>
-    tum mere saath ho 💫
-    </em>
+      Aur in sab se zyada…<br>
+      Perfect is the smile you give me,<br>
+      Aur lucky hoon main jo har naye saal<br>
+      tum mere saath ho 💖
+    </p>
+    <button class="next" onclick="goTo(3)">One Last Thing ✨</button>
   </div>
-
-  <button onclick="nextScreen(3)">One Last Thing 🌙</button>
 </div>
 
 <!-- SCREEN 3 -->
 <div class="section" id="screen3">
-  
-  <!-- DOODLE COUPLE -->
-  <svg viewBox="0 0 200 200">
-    <path d="M60 120 Q80 80 100 120" fill="none" stroke="white" stroke-width="2"/>
-    <circle cx="80" cy="60" r="18" fill="none" stroke="white" stroke-width="2"/>
-    
-    <path d="M140 120 Q120 80 100 120" fill="none" stroke="white" stroke-width="2"/>
-    <circle cx="120" cy="60" r="18" fill="none" stroke="white" stroke-width="2"/>
-  </svg>
+  <canvas id="fireworks"></canvas>
 
-  <h2>Forever & Always 🤍</h2>
+  <div class="doodle">
+    <svg width="200" height="120">
+      <circle cx="60" cy="40" r="18" stroke="white" fill="none" stroke-width="2"/>
+      <circle cx="140" cy="40" r="18" stroke="white" fill="none" stroke-width="2"/>
+      <line x1="60" y1="58" x2="60" y2="100" stroke="white" stroke-width="2"/>
+      <line x1="140" y1="58" x2="140" y2="100" stroke="white" stroke-width="2"/>
+      <div class="heart">❤️</div>
+    </svg>
+  </div>
+
+  <div class="final-text">Forever & Always ❤️</div>
 </div>
 
 <script>
-function nextScreen(num) {
-  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-  document.getElementById('screen' + num).classList.add('active');
-  if(num === 3) startFireworks();
+function goTo(n){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen'+n).classList.add('active');
 }
 
-function startFireworks() {
-  for(let i = 0; i < 25; i++) {
-    let fw = document.createElement('div');
-    fw.className = 'firework';
-    fw.style.left = Math.random() * window.innerWidth + 'px';
-    fw.style.top = Math.random() * window.innerHeight + 'px';
-    fw.style.background = `hsl(${Math.random()*360},100%,70%)`;
-    document.body.appendChild(fw);
+/* ---------- FIREWORKS ---------- */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    setTimeout(() => fw.remove(), 1500);
+let particles=[];
+
+function firework(){
+  for(let i=0;i<40;i++){
+    particles.push({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height/2,
+      dx:(Math.random()-0.5)*4,
+      dy:(Math.random()-0.5)*4,
+      life:60
+    });
   }
-  setInterval(startFireworks, 1800);
 }
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,i)=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,Math.PI*2);
+    ctx.fillStyle="pink";
+    ctx.fill();
+    p.x+=p.dx;
+    p.y+=p.dy;
+    p.life--;
+    if(p.life<=0) particles.splice(i,1);
+  });
+  requestAnimationFrame(animate);
+}
+
+setInterval(firework,800);
+animate();
 </script>
 
 </body>
