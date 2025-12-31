@@ -1,162 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New Year Surprise</title>
 
 <style>
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
+}
+
+body {
   background: radial-gradient(circle at top, #ffb347, #1a001a);
-  color: #fff;
+  color: white;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
-.screen {
+.section {
+  display: none;
+  height: 100vh;
+  width: 100%;
   text-align: center;
+  padding: 40px 20px;
 }
 
-.hidden { display: none; }
-
-.bouquet {
-  font-size: 80px;
-  animation: float 3s ease-in-out infinite;
+.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-.typing {
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  white-space: nowrap;
-  border-right: 3px solid #ffd700;
-  width: 0;
-  overflow: hidden;
-  animation: typing 3.5s steps(30,end) forwards, blink .7s infinite;
-}
-
-@keyframes typing {
-  to { width: 100%; }
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 25px;
-  padding: 35px;
-  width: 340px;
-  box-shadow: 0 0 35px rgba(255, 180, 71, 0.6);
-}
-
-.year {
-  font-size: 42px;
-  font-weight: bold;
-  color: #ffd700;
-}
-
-.message {
-  margin-top: 20px;
-  font-size: 16px;
-  line-height: 1.7;
-  background: rgba(255,255,255,0.15);
-  padding: 20px;
-  border-radius: 20px;
-}
-
+/* BUTTON */
 button {
-  margin-top: 22px;
-  padding: 12px 25px;
+  margin-top: 30px;
+  padding: 12px 28px;
+  font-size: 18px;
   border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  background: #ffb347;
-  color: #1a001a;
+  border-radius: 30px;
+  background: #ff4d6d;
+  color: white;
   cursor: pointer;
+  transition: 0.3s;
 }
 
+button:hover {
+  background: #ff1e50;
+}
+
+/* TEXT STYLES */
+h1 {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.quote {
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+/* DOODLE */
+svg {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+/* FIREWORKS */
 .firework {
-  position: fixed;
-  top: -10px;
-  font-size: 22px;
-  animation: fall linear infinite;
-  pointer-events: none;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+  animation: explode 1.5s infinite;
 }
 
-@keyframes fall {
-  to { transform: translateY(110vh); }
+@keyframes explode {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(12); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- FIRST SCREEN -->
-<div class="screen" id="firstScreen">
-  <div class="bouquet">💐🌸🌹</div>
-  <div class="typing">Happy New Year Kritika 💖</div>
-  <button onclick="openCard()">Open Surprise 🎁</button>
+<!-- SCREEN 1 -->
+<div class="section active" id="screen1">
+  <h1>✨ Happy New Year <br> Pasandida Aurat ✨</h1>
+  <button onclick="nextScreen(2)">Open Surprise 💌</button>
 </div>
 
-<!-- SECOND SCREEN -->
-<div class="screen hidden" id="cardScreen">
-  <div class="card">
-    <h2>Happy New Year</h2>
-    <div class="year">2026</div>
+<!-- SCREEN 2 -->
+<div class="section" id="screen2">
+  <div class="quote">
+    Perfect as the Rosso Corsa shade ❤️<br>
+    Perfect as BMW eyes 👀<br>
+    Beautiful as the GT3 RS 🏎️<br>
+    Perfect as Lamborghini curves 💛<br>
+    Perfect as the BMW M4 alloys ✨<br><br>
 
-    <div class="message">
-  Perfect as the <b>Rosso Corsa</b> shade ❤️<br>
-  Perfect as <b>BMW Angel Eyes</b> ✨<br>
-  Beautiful as the <b>GT3 RS</b> 🏎️<br>
-  Perfect as <b>Lamborghini curves</b> 💛<br>
-  Perfect as the <b>BMW M4 alloys</b> 🔥
-  <br><br>
-
-  In a world full of noise, you are my favorite melody 🎶<br>
-  In a journey full of turns, you are my smoothest ride 🚗💨<br>
-  Every moment with you feels like a dream I never want to wake from 💫
-  <br><br>
-
-  May 2026 bring us more smiles, more love,<br>
-  and countless memories together 💖
-  <br><br>
-
-  — From Mohit
+    <em>
+    Aur in sab se zyada…<br>
+    Perfect is the smile you give me,<br>
+    Aur lucky hoon main jo har naye saal<br>
+    tum mere saath ho 💫
+    </em>
   </div>
 
-    <button onclick="celebrate()">Celebrate 🎆</button>
-  </div>
+  <button onclick="nextScreen(3)">One Last Thing 🌙</button>
+</div>
+
+<!-- SCREEN 3 -->
+<div class="section" id="screen3">
+  
+  <!-- DOODLE COUPLE -->
+  <svg viewBox="0 0 200 200">
+    <path d="M60 120 Q80 80 100 120" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="80" cy="60" r="18" fill="none" stroke="white" stroke-width="2"/>
+    
+    <path d="M140 120 Q120 80 100 120" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="120" cy="60" r="18" fill="none" stroke="white" stroke-width="2"/>
+  </svg>
+
+  <h2>Forever & Always 🤍</h2>
 </div>
 
 <script>
-function openCard() {
-  document.getElementById("firstScreen").classList.add("hidden");
-  document.getElementById("cardScreen").classList.remove("hidden");
+function nextScreen(num) {
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById('screen' + num).classList.add('active');
+  if(num === 3) startFireworks();
 }
 
-function celebrate() {
-  for (let i = 0; i < 40; i++) {
-    const fw = document.createElement("div");
-    fw.className = "firework";
-    fw.textContent = "🎆";
-    fw.style.left = Math.random() * window.innerWidth + "px";
-    fw.style.animationDuration = 2 + Math.random() * 3 + "s";
+function startFireworks() {
+  for(let i = 0; i < 25; i++) {
+    let fw = document.createElement('div');
+    fw.className = 'firework';
+    fw.style.left = Math.random() * window.innerWidth + 'px';
+    fw.style.top = Math.random() * window.innerHeight + 'px';
+    fw.style.background = `hsl(${Math.random()*360},100%,70%)`;
     document.body.appendChild(fw);
-    setTimeout(() => fw.remove(), 5000);
+
+    setTimeout(() => fw.remove(), 1500);
   }
+  setInterval(startFireworks, 1800);
 }
 </script>
 
